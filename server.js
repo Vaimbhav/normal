@@ -5,15 +5,15 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080; // Railway prefers 8080
 
-// Connect to MongoDB
+// ✅ MongoDB Connection
 mongoose
 	.connect(process.env.MONGO_URI)
 	.then(() => console.log('✅ Connected to MongoDB'))
 	.catch((err) => console.error('❌ MongoDB connection error:', err));
 
-// Schema
+// ✅ Schema
 const applicationSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
@@ -30,29 +30,22 @@ const applicationSchema = new mongoose.Schema({
 
 const Application = mongoose.model('Application', applicationSchema);
 
-// Middleware
-app.use(
-	cors({
-		origin: process.env.CORS_ORIGIN || '*',
-	}),
-);
-
+// ✅ Middleware
+app.use(cors({origin: process.env.CORS_ORIGIN || '*'}));
 app.use(express.json());
 
-// ✅ Serve static frontend properly
-app.use(express.static(path.join(__dirname)));
+// ✅ Serve frontend
+app.use(express.static(__dirname));
 
-// ✅ Root route (IMPORTANT FIX)
+// ✅ Root route
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// API route
+// ✅ API route
 app.post('/submit', async (req, res) => {
 	try {
-		const formData = req.body;
-
-		const newApplication = new Application(formData);
+		const newApplication = new Application(req.body);
 		await newApplication.save();
 
 		res.status(200).json({
@@ -64,8 +57,13 @@ app.post('/submit', async (req, res) => {
 	}
 });
 
-// Start server
-app.listen(PORT, () => {
+// ✅ IMPORTANT: Catch-all route (fixes Railway 404)
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// ✅ IMPORTANT: Listen on 0.0.0.0 (REQUIRED for Railway)
+app.listen(PORT, '0.0.0.0', () => {
 	console.log(`🚀 Server running on port ${PORT}`);
 });
 
