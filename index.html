@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Free Himalayan Trips — QuietSummit Trip Leaders</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ── RESET & ROOT ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pine: #243f32;
+            --pine-mid: #2e5240;
+            --pine-lit: #3a6b52;
+            --cream: #f4ede0;
+            --warm: #ebe2d0;
+            --fog: #d8cebb;
+            --ember: #c05a2c;
+            --ember-lit: #d47140;
+            --gold: #b8891e;
+            --gold-lit: #d4a032;
+            --mist: #7a9486;
+            --ink: #151210;
+            --snow: #ffffff;
+            --body: #c4b8a6;
+            --sub: #8a7e70;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            background: var(--ink);
+            color: var(--cream);
+            overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.65;
+            cursor: none;
+        }
+
+        /* ── CUSTOM CURSOR ── */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--ember);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s, width 0.2s, height 0.2s, background 0.2s;
+            mix-blend-mode: normal;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(192, 90, 44, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.18s ease, width 0.3s, height 0.3s;
+        }
+
+        body:hover .cursor {
+            opacity: 1;
+        }
+
+        a:hover~.cursor,
+        button:hover~.cursor {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to bottom, rgba(21, 18, 16, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(0px);
+        }
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--snow);
+            letter-spacing: 0.3px;
+            text-decoration: none;
+        }
+
+        .nav-brand span {
+            font-style: italic;
+            color: var(--gold-lit);
+        }
+
+        .nav-cta {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--snow);
+            background: var(--ember);
+            padding: 10px 22px;
+            text-decoration: none;
+            transition: background 0.2s;
+            border: none;
+            cursor: none;
+        }
+
+        .nav-cta:hover {
+            background: var(--ember-lit);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 48px 80px;
+        }
+
+        /* Animated mountain gradient bg */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 100% 70% at 50% 110%, rgba(36, 63, 50, 0.9) 0%, transparent 65%),
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184, 137, 30, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 15% 30%, rgba(192, 90, 44, 0.06) 0%, transparent 55%),
+                linear-gradient(175deg, #0d1510 0%, #1a2b1f 40%, #243f32 100%);
+            z-index: 0;
+        }
+
+        /* Subtle grain overlay */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* Mountain silhouette SVG */
+        .mountain-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-lit);
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.2s forwards;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--gold-lit);
+        }
+
+        .hero-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.35s forwards;
+        }
+
+        .hero-headline em {
+            font-style: italic;
+            color: var(--gold-lit);
+            display: block;
+        }
+
+        .hero-sub {
+            font-size: 19px;
+            color: var(--body);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 52px;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.5s forwards;
+        }
+
+        .hero-sub strong {
+            color: var(--snow);
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.65s forwards;
+        }
+
+        .btn-primary {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: var(--ember);
+            color: var(--snow);
+            padding: 18px 36px;
+            text-decoration: none;
+            border: none;
+            cursor: none;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--ember-lit);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 14px;
+            color: var(--mist);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(122, 148, 134, 0.4);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+            cursor: none;
+        }
+
+        .btn-ghost:hover {
+            color: var(--snow);
+            border-color: var(--snow);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s 1.2s forwards;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, var(--mist), transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        .scroll-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mist);
+            writing-mode: vertical-rl;
+            margin-top: 8px;
+        }
+
+        /* ── PROOF STRIP ── */
+        .proof-strip {
+            background: var(--pine);
+            padding: 20px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mist);
+        }
+
+        .proof-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* ── THE OFFER ── */
+        .offer {
+            padding: 120px 0;
+            background: var(--cream);
+            color: var(--ink);
+            overflow: hidden;
+        }
+
+        .offer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .offer-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--ember);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offer-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--ember);
+        }
+
+        .offer-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4.5vw, 58px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--pine);
+            margin-bottom: 24px;
+        }
+
+        .offer-headline em {
+            font-style: italic;
+            color: var(--ember);
+        }
+
+        .offer-body {
+            font-size: 17px;
+            line-height: 1.75;
+            color: #4a3d30;
+            margin-bottom: 36px;
+        }
+
+        .offer-perks {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .perk {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 20px;
+            background: var(--snow);
+            border-left: 3px solid var(--ember);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .perk:hover {
+            transform: translateX(4px);
+            box-shadow: -4px 0 0 var(--ember), 4px 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .perk-icon {
+            font-size: 22px;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .perk-text h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--pine);
+            margin-bottom: 3px;
+        }
+
+        .perk-text p {
+            font-size: 14px;
+            color: #6a5c4e;
+            line-height: 1.5;
+        }
+
+        /* Right side — visual card stack */
+        .offer-visual {
+            position: relative;
+            height: 520px;
+        }
+
+        .offer-card {
+            position: absolute;
+            background: var(--pine);
+            color: var(--snow);
+            padding: 32px 28px;
+            width: 300px;
+        }
+
+        .offer-card:nth-child(1) {
+            top: 0;
+            left: 40px;
+            z-index: 3;
+        }
+
+        .offer-card:nth-child(2) {
+            top: 80px;
+            left: 0;
+            z-index: 2;
+            opacity: 0.7;
+        }
+
+        .offer-card:nth-child(3) {
+            top: 160px;
+            left: 80px;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .offer-card-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-lit);
+            margin-bottom: 14px;
+        }
+
+        .offer-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .offer-card-meta {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .offer-card-badge {
+            display: inline-block;
+            background: var(--ember);
+            color: var(--snow);
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+        }
+
+        .offer-card-stat {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--gold);
+            color: var(--ink);
+            padding: 16px 20px;
+            text-align: center;
+        }
+
+        .offer-card-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+
+        .offer-card-stat-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* ── HOW IT WORKS ── */
+        .how {
+            padding: 120px 0;
+            background: var(--ink);
+        }
+
+        .how-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .section-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-lit);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-eyebrow::before,
+        .section-eyebrow::after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--gold-lit);
+        }
+
+        .section-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--snow);
+        }
+
+        .section-headline em {
+            font-style: italic;
+            color: var(--gold-lit);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+        }
+
+        .step {
+            background: var(--ink);
+            padding: 40px 28px;
+            position: relative;
+            transition: background 0.25s;
+        }
+
+        .step:hover {
+            background: var(--pine);
+        }
+
+        .step-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.06);
+            line-height: 1;
+            margin-bottom: 24px;
+            transition: color 0.25s;
+        }
+
+        .step:hover .step-num {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .step-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--snow);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .step-body {
+            font-size: 14px;
+            color: var(--body);
+            line-height: 1.65;
+        }
+
+        .step-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--ember);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .step:hover .step-accent {
+            transform: scaleX(1);
+        }
+
+        /* ── WHO IS A TRIP LEADER ── */
+        .who {
+            padding: 120px 0;
+            background: var(--pine);
+            overflow: hidden;
+        }
+
+        .who-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .who-traits {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .trait {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: padding-left 0.25s;
+            cursor: default;
+        }
+
+        .trait:first-child {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trait:hover {
+            padding-left: 8px;
+        }
+
+        .trait-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--ember);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: 11px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .trait-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--snow);
+            line-height: 1.35;
+        }
+
+        .trait-sub {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 13px;
+            color: var(--mist);
+            margin-top: 4px;
+        }
+
+        .who-right {
+            padding-top: 8px;
+        }
+
+        .who-callout {
+            background: var(--ink);
+            padding: 40px 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .who-callout::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 16px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 160px;
+            color: rgba(184, 137, 30, 0.1);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .who-callout-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--snow);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .who-callout-attr {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-lit);
+        }
+
+        .who-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .who-stat {
+            background: var(--pine);
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .who-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--gold-lit);
+            line-height: 1;
+            display: block;
+        }
+
+        .who-stat-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mist);
+            display: block;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        /* ── WHAT YOU GET ── */
+        .benefits {
+            padding: 120px 0;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            background: var(--snow);
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--ember);
+        }
+
+        .benefit-card:nth-child(2)::before {
+            background: var(--gold);
+        }
+
+        .benefit-card:nth-child(3)::before {
+            background: var(--pine);
+        }
+
+        .benefit-card:nth-child(4)::before {
+            background: var(--pine);
+        }
+
+        .benefit-card:nth-child(5)::before {
+            background: var(--ember);
+        }
+
+        .benefit-card:nth-child(6)::before {
+            background: var(--gold);
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--pine);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .benefit-body {
+            font-size: 14.5px;
+            color: #5a4e40;
+            line-height: 1.65;
+        }
+
+        .benefit-tag {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ember);
+            padding: 4px 10px;
+            background: rgba(192, 90, 44, 0.08);
+        }
+
+        /* ── FORM SECTION ── */
+        .form-section {
+            padding: 120px 0;
+            background: var(--pine);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(192, 90, 44, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .form-left .section-eyebrow {
+            color: var(--gold-lit);
+        }
+
+        .form-left .section-eyebrow::before,
+        .form-left .section-eyebrow::after {
+            background: var(--gold-lit);
+        }
+
+        .form-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4vw, 54px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--snow);
+            margin: 16px 0 24px;
+        }
+
+        .form-headline em {
+            font-style: italic;
+            color: var(--gold-lit);
+        }
+
+        .form-desc {
+            font-size: 16px;
+            color: var(--body);
+            line-height: 1.75;
+            margin-bottom: 36px;
+        }
+
+        .form-promise {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .promise-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--mist);
+        }
+
+        .promise-item::before {
+            content: '✦';
+            color: var(--gold-lit);
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+        /* FORM */
+.form-box {
+  background: var(--ink);
+  padding: 48px 40px;
+  position: relative;
+}
+
+.form-box::before {
+  content: 'APPLY NOW';
+  position: absolute;
+  top: -10px; left: 24px;
+  background: var(--ember);
+  color: var(--snow);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--snow);
+  padding: 14px 16px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--ember);
+  background: rgba(192,90,44,0.06);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+.form-select option { background: var(--ink); }
+
+.form-textarea { height: 100px; resize: none; }
+
+.form-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--ember);
+  color: var(--snow);
+  border: none;
+  padding: 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: none;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--ember-lit); transform: translateY(-2px); }
+
+.form-fine {
+  font-size: 12px;
+  color: var(--sub);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--snow);
+}
+
+.footer-brand em {
+  font-style: italic;
+  color: var(--gold-lit);
+}
+
+.footer-tagline {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-top: 4px;
+}
+
+.footer-right {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sub);
+  text-align: right;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.1); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hero { padding: 100px 24px 70px; }
+  .section-inner { padding: 0 24px; }
+  .offer-grid, .who-inner, .form-grid { grid-template-columns: 1fr; gap: 48px; }
+  .offer-visual { display: none; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .form-two { grid-template-columns: 1fr; }
+  .proof-strip { padding: 16px 24px; gap: 20px; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .footer-right { text-align: left; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+
+@media (max-width: 600px) {
+  .steps { grid-template-columns: 1fr; }
+  .who-stats { grid-template-columns: 1fr; }
+  .proof-strip { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ── NAV ── -->
+    <nav>
+        <a href="#" class="nav-brand">Quiet<span>Summit</span></a>
+        <a href="#apply" class="nav-cta">Apply as Trip Leader</a>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+
+        <svg class="mountain-silhouette" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path
+                d="M0,400 L0,280 L120,200 L240,260 L360,140 L480,220 L580,80 L680,180 L780,60 L900,160 L1020,30 L1120,130 L1220,50 L1320,140 L1440,90 L1440,400 Z"
+                fill="white" />
+            <path
+                d="M0,400 L0,330 L180,260 L300,300 L420,200 L540,270 L640,160 L740,240 L860,130 L960,210 L1080,100 L1200,190 L1320,140 L1440,180 L1440,400 Z"
+                fill="white" opacity="0.5" />
+        </svg>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">QuietSummit · Trip Leader Programme</div>
+
+            <h1 class="hero-headline">
+                Lead a free<br>
+                <em>Himalayan trek.</em>
+            </h1>
+
+            <p class="hero-sub">
+                You love the mountains. You know the trails. You've always wanted to bring others into that world.
+                <strong>QuietSummit pays for your journey</strong> — in exchange for leading a small group of conscious
+                travellers.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#apply" class="btn-primary">Apply as Trip Leader →</a>
+                <a href="#how" class="btn-ghost">See how it works</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <div class="scroll-label">Scroll</div>
+        </div>
+    </section>
+
+    <!-- ── PROOF STRIP ── -->
+    <div class="proof-strip">
+        <div class="proof-item">
+            <div class="proof-dot"></div>Uttarakhand & Himachal Routes
+        </div>
+        <div class="proof-item">
+            <div class="proof-dot"></div>Groups of 6–10 Travellers
+        </div>
+        <div class="proof-item">
+            <div class="proof-dot"></div>Zero Cost to Trip Leader
+        </div>
+        <div class="proof-item">
+            <div class="proof-dot"></div>QS Verified Badge on Profile
+        </div>
+        <div class="proof-item">
+            <div class="proof-dot"></div>Pre-Launch — Limited Spots
+        </div>
+    </div>
+
+    <!-- ── THE OFFER ── -->
+    <section class="offer" id="offer">
+        <div class="section-inner">
+            <div class="offer-grid">
+                <div class="offer-left">
+                    <div class="offer-label reveal">The Opportunity</div>
+                    <h2 class="offer-headline reveal reveal-delay-1">
+                        You plan the trek.<br>
+                        <em>We handle everything else.</em>
+                    </h2>
+                    <p class="offer-body reveal reveal-delay-2">
+                        Most people who love the Himalayas never get to share it the right way. QuietSummit changes
+                        that. As a Trip Leader, you design the journey — we verify it, list it, and fill it with
+                        travellers who genuinely want to slow down. Your trek costs you nothing.
+                    </p>
+                    <div class="offer-perks reveal reveal-delay-3">
+                        <div class="perk">
+                            <div class="perk-icon">🏔</div>
+                            <div class="perk-text">
+                                <h4>Your trek, your vision</h4>
+                                <p>Design your own itinerary — route, pace, season, theme. We verify and publish it
+                                    under your name.</p>
+                            </div>
+                        </div>
+                        <div class="perk">
+                            <div class="perk-icon">✦</div>
+                            <div class="perk-text">
+                                <h4>Free trip for you</h4>
+                                <p>When your journey fills, your spot is completely covered — accommodation, guide
+                                    costs, and trail expenses.</p>
+                            </div>
+                        </div>
+                        <div class="perk">
+                            <div class="perk-icon">🤝</div>
+                            <div class="perk-text">
+                                <h4>Local ecosystem built in</h4>
+                                <p>We connect you with QS-verified local guides and Pahadi homestays. You focus on
+                                    leading. We handle the logistics.</p>
+                            </div>
+                        </div>
+                        <div class="perk">
+                            <div class="perk-icon">🌿</div>
+                            <div class="perk-text">
+                                <h4>A community behind you</h4>
+                                <p>Access the Quiet Members-only thread, early journey listings, and a growing network
+                                    of like-minded leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offer-visual reveal reveal-delay-2">
+                    <div class="offer-card">
+                        <div class="offer-card-tag">Journey · Verified</div>
+                        <div class="offer-card-title">Dayara Bugyal<br>Slow Trek</div>
+                        <div class="offer-card-meta">Uttarakhand · 6 days · May 2026 · 8 seats</div>
+                        <div class="offer-card-badge">Led by Quiet Member</div>
+                        <div class="offer-card-stat">
+                            <span class="offer-card-stat-num">₹0</span>
+                            <span class="offer-card-stat-label">Cost to<br>Trip Leader</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <div class="offer-card-tag">Journey · Verified</div>
+                        <div class="offer-card-title">Kuari Pass<br>Autumn Walk</div>
+                        <div class="offer-card-meta">Uttarakhand · 7 days · Oct 2026 · 6 seats</div>
+                        <div class="offer-card-badge">Led by Quiet Member</div>
+                    </div>
+                    <div class="offer-card">
+                        <div class="offer-card-tag">Journey · Open</div>
+                        <div class="offer-card-title">Nag Tibba<br>Monsoon Trail</div>
+                        <div class="offer-card-meta">Uttarakhand · 3 days · Jul 2026 · 10 seats</div>
+                        <div class="offer-card-badge">Led by Quiet Member</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="how" id="how">
+        <div class="section-inner">
+            <div class="how-header">
+                <div class="section-eyebrow reveal">The Process</div>
+                <h2 class="section-headline reveal reveal-delay-1">From application<br>to <em>the summit.</em></h2>
+            </div>
+
+            <div class="steps">
+                <div class="step reveal">
+                    <div class="step-accent"></div>
+                    <div class="step-num">01</div>
+                    <span class="step-icon">📝</span>
+                    <div class="step-title">Apply & Share Your Vision</div>
+                    <div class="step-body">Tell us about yourself — your trekking experience, your favourite routes, and
+                        the kind of journey you'd love to lead. Takes 3 minutes.</div>
+                </div>
+                <div class="step reveal reveal-delay-1">
+                    <div class="step-accent"></div>
+                    <div class="step-num">02</div>
+                    <span class="step-icon">✦</span>
+                    <div class="step-title">KYC & Verification</div>
+                    <div class="step-body">We do a simple identity check and a 15-minute call. Once verified, you get
+                        your Quiet Member profile with a QS Verified badge.</div>
+                </div>
+                <div class="step reveal reveal-delay-2">
+                    <div class="step-accent"></div>
+                    <div class="step-num">03</div>
+                    <span class="step-icon">🏔</span>
+                    <div class="step-title">Design Your Journey</div>
+                    <div class="step-body">Plan your itinerary, set your dates, choose your route. We connect you with
+                        local guides and homestays and review your listing.</div>
+                </div>
+                <div class="step reveal reveal-delay-3">
+                    <div class="step-accent"></div>
+                    <div class="step-num">04</div>
+                    <span class="step-icon">🌿</span>
+                    <div class="step-title">Lead & Earn</div>
+                    <div class="step-body">When your group fills, your trip is fully covered. Lead the journey, collect
+                        ratings, grow your profile. Every trip builds your reputation.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WHO IS A TRIP LEADER ── -->
+    <section class="who">
+        <div class="section-inner">
+            <div class="who-inner">
+                <div class="who-left">
+                    <div class="section-eyebrow reveal" style="color:var(--gold-lit)">Who Should Apply</div>
+                    <h2 class="section-headline reveal reveal-delay-1" style="margin:16px 0 40px;">You might be<br>a
+                        <em>Trip Leader</em><br>if you are...</h2>
+
+                    <div class="who-traits">
+                        <div class="trait reveal">
+                            <div class="trait-check">✓</div>
+                            <div>
+                                <div class="trait-text">An experienced trekker who's done it right</div>
+                                <div class="trait-sub">5+ treks, comfortable with Himalayan terrain and altitude</div>
+                            </div>
+                        </div>
+                        <div class="trait reveal reveal-delay-1">
+                            <div class="trait-check">✓</div>
+                            <div>
+                                <div class="trait-text">Someone who brings people together naturally</div>
+                                <div class="trait-sub">Friends trust your recommendations. You've organised group trips
+                                    before.</div>
+                            </div>
+                        </div>
+                        <div class="trait reveal reveal-delay-2">
+                            <div class="trait-check">✓</div>
+                            <div>
+                                <div class="trait-text">A believer in slow, conscious travel</div>
+                                <div class="trait-sub">You care about the community, not just the summit. Local food,
+                                    real guides, honest pace.</div>
+                            </div>
+                        </div>
+                        <div class="trait reveal reveal-delay-3">
+                            <div class="trait-check">✓</div>
+                            <div>
+                                <div class="trait-text">Ready to build something beyond a hobby</div>
+                                <div class="trait-sub">Trip leading can become a serious side income over time. We're
+                                    building the infrastructure.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="who-right">
+                    <div class="who-callout reveal">
+                        <div class="who-callout-text">"The mountains gave me everything. QuietSummit gave me a way to
+                            pass that on — and go back for free."</div>
+                        <div class="who-callout-attr">Quiet Member · Uttarakhand</div>
+                    </div>
+
+                    <div class="who-stats reveal reveal-delay-1">
+                        <div class="who-stat">
+                            <span class="who-stat-num">₹0</span>
+                            <span class="who-stat-label">Trip cost to<br>the leader</span>
+                        </div>
+                        <div class="who-stat">
+                            <span class="who-stat-num">6–10</span>
+                            <span class="who-stat-label">Conscious<br>travellers per trip</span>
+                        </div>
+                        <div class="who-stat">
+                            <span class="who-stat-num">54+</span>
+                            <span class="who-stat-label">Uttarakhand<br>routes available</span>
+                        </div>
+                        <div class="who-stat">
+                            <span class="who-stat-num">100%</span>
+                            <span class="who-stat-label">Local guide &<br>homestay backed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WHAT YOU GET ── -->
+    <section class="benefits">
+        <div class="section-inner">
+            <div class="how-header reveal">
+                <div class="section-eyebrow" style="color:var(--ember)">What You Get</div>
+                <h2 class="section-headline" style="color:var(--pine);margin-top:12px;">Everything a Trip Leader<br><em
+                        style="color:var(--ember)">needs to succeed.</em></h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card reveal">
+                    <span class="benefit-icon">🎫</span>
+                    <div class="benefit-title">Free Trip, Every Time</div>
+                    <p class="benefit-body">Once your journey reaches minimum registrations, your slot is fully covered
+                        — trail costs, verified homestay, and guide fees.</p>
+                    <div class="benefit-tag">Core Benefit</div>
+                </div>
+                <div class="benefit-card reveal reveal-delay-1">
+                    <span class="benefit-icon">✦</span>
+                    <div class="benefit-title">QS Verified Badge</div>
+                    <p class="benefit-body">Your public profile carries the QS Verified mark — signalling credibility to
+                        travellers before they even read your bio.</p>
+                    <div class="benefit-tag" style="color:var(--gold);background:rgba(184,137,30,0.08);">Trust Signal
+                    </div>
+                </div>
+                <div class="benefit-card reveal reveal-delay-2">
+                    <span class="benefit-icon">🤝</span>
+                    <div class="benefit-title">Local Ecosystem Access</div>
+                    <p class="benefit-body">Tap into QS's network of verified Pahadi guides and homestay families. You
+                        design. They deliver. Together it works.</p>
+                    <div class="benefit-tag" style="color:var(--pine);background:rgba(36,63,50,0.08);">Infrastructure
+                    </div>
+                </div>
+                <div class="benefit-card reveal">
+                    <span class="benefit-icon">💬</span>
+                    <div class="benefit-title">Members-Only Community</div>
+                    <p class="benefit-body">Early access to the Quiet Members thread — where leaders share routes,
+                        contacts, and build journeys together before anyone else sees them.</p>
+                    <div class="benefit-tag" style="color:var(--pine);background:rgba(36,63,50,0.08);">Community</div>
+                </div>
+                <div class="benefit-card reveal reveal-delay-1">
+                    <span class="benefit-icon">📈</span>
+                    <div class="benefit-title">Karma Score & Growth</div>
+                    <p class="benefit-body">Every journey grows your Karma Score — a public rating that attracts better
+                        travellers and unlocks higher commission tiers over time.</p>
+                    <div class="benefit-tag">Progression</div>
+                </div>
+                <div class="benefit-card reveal reveal-delay-2">
+                    <span class="benefit-icon">🚀</span>
+                    <div class="benefit-title">Early Access Advantage</div>
+                    <p class="benefit-body">Pre-launch members get first-mover advantage — your profile goes live on Day
+                        1 before the platform opens to the public.</p>
+                    <div class="benefit-tag" style="color:var(--gold);background:rgba(184,137,30,0.08);">Founding Member
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FORM ── -->
+    <section class="form-section" id="apply">
+        <div class="section-inner">
+            <div class="form-grid">
+                <div class="form-left">
+                    <div class="section-eyebrow reveal">Pre-Launch Application</div>
+                    <h2 class="form-headline reveal reveal-delay-1">
+                        The mountain<br>
+                        <em>is calling.</em><br>
+                        Answer it.
+                    </h2>
+                    <p class="form-desc reveal reveal-delay-2">
+                        We're onboarding our founding batch of Trip Leaders before the platform goes live. Spots are
+                        limited — we're being selective on purpose. This is the beginning of something real.
+                    </p>
+                    <div class="form-promise reveal reveal-delay-3">
+                        <div class="promise-item">No fee to apply or join as a Trip Leader</div>
+                        <div class="promise-item">We'll respond within 48 hours</div>
+                        <div class="promise-item">First trip could be as early as May 2026</div>
+                        <div class="promise-item">Your name on the platform from Day 1</div>
+                    </div>
+                </div>
+
+                <div class="form-box reveal reveal-delay-1">
+                    <form id="leaderForm" onsubmit="handleSubmit(event)">
+                        <div class="form-two">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" id="firstName" class="form-input" placeholder="Arjun" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" placeholder="Sharma" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">WhatsApp Number</label>
+                            <input type="tel" id="whatsapp" class="form-input" placeholder="+91 98765 43210" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Instagram Handle</label>
+                            <input type="text" id="instagram" class="form-input" placeholder="@yourhandle">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How many Himalayan treks have you done?</label>
+                            <select id="treksCount" class="form-select" required>
+                                <option value="" disabled selected>Select range</option>
+                                <option>1–3 treks (just getting started)</option>
+                                <option>4–8 treks (fairly experienced)</option>
+                                <option>9–15 treks (serious trekker)</option>
+                                <option>15+ treks (veteran)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Which region do you know best?</label>
+                            <select id="region" class="form-select" required>
+                                <option value="" disabled selected>Select region</option>
+                                <option>Garhwal, Uttarakhand</option>
+                                <option>Kumaon, Uttarakhand</option>
+                                <option>Himachal Pradesh</option>
+                                <option>Ladakh / J&K</option>
+                                <option>Multiple regions</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tell us about your dream trek to lead</label>
+                            <textarea id="dreamTrek" class="form-textarea"
+                                placeholder="Describe the route, the season, and what makes it special to you..."></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            Submit Application →
+                        </button>
+
+                        <p class="form-fine">By applying you agree to our terms. No spam — we respect your inbox as much
+                            as you respect the mountain.</p>
+                    </form>
+
+                    <!-- Success state (hidden) -->
+                    <div id="successMsg" style="display:none; text-align:center; padding: 40px 20px;">
+                        <div style="font-size:40px; margin-bottom:20px;">🏔</div>
+                        <div
+                            style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:var(--snow); margin-bottom:12px;">
+                            Application Received.</div>
+                        <div style="font-size:15px; color:var(--body); line-height:1.7;">We'll reach out on WhatsApp
+                            within 48 hours.<br>The mountain is patient. So are we.</div>
+                        <div
+                            style="margin-top:24px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--gold-lit);">
+                            GO SLOW · GO DEEP · GO HIMALAYA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div>
+            <div class="footer-brand">Quiet<em>Summit</em> · Shant Shikhar</div>
+            <div class="footer-tagline">Where Stillness Takes You Higher · Pre-Launch 2026</div>
+        </div>
+        <div class="footer-right">
+            <div>@quietsummit.in</div>
+            <div style="margin-top:4px;">Himalayan Slow Travel · India</div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── CURSOR ── */
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = mx + 'px';
+            cursor.style.top = my + 'px';
+        });
+
+        function animRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animRing);
+        }
+        animRing();
+
+        document.querySelectorAll('a, button, .perk, .step, .benefit-card, .trait').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '18px';
+                cursor.style.height = '18px';
+                cursor.style.background = 'var(--gold-lit)';
+                ring.style.width = '52px';
+                ring.style.height = '52px';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '10px';
+                cursor.style.height = '10px';
+                cursor.style.background = 'var(--ember)';
+                ring.style.width = '36px';
+                ring.style.height = '36px';
+            });
+        });
+
+        /* ── SCROLL REVEAL ── */
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+
+        /* ── NAV BLUR ON SCROLL ── */
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.style.backdropFilter = 'blur(12px)';
+                nav.style.background = 'rgba(21,18,16,0.88)';
+            } else {
+                nav.style.backdropFilter = 'blur(0px)';
+                nav.style.background = 'linear-gradient(to bottom, rgba(21,18,16,0.95) 0%, transparent 100%)';
+            }
+        });
+
+        /* ── FORM SUBMIT ── */
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Submitting...';
+            btn.style.opacity = '0.7';
+
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                instagram: document.getElementById('instagram').value,
+                treksCount: document.getElementById('treksCount').value,
+                region: document.getElementById('region').value,
+                dreamTrek: document.getElementById('dreamTrek').value,
+            };
+
+            try {
+                // Send to the same URL context so it works in production
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('leaderForm').style.display = 'none';
+                    document.getElementById('successMsg').style.display = 'block';
+                } else {
+                    alert('There was an error submitting your application. Please try again.');
+                    btn.textContent = 'Submit Application →';
+                    btn.style.opacity = '1';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('We could not reach the server. Make sure the backend is running.');
+                btn.textContent = 'Submit Application →';
+                btn.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+
+</html>
